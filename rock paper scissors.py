@@ -1,47 +1,25 @@
 import random 
 
-# this is a mess lol I'll come back to this
-
-choices = ['ROCK', 'PAPER', 'SCISSORS']
-
-def rock_paper_scissors():
+def play():
     
-    pc_choice = random.choice(choices)
+    user = input("ROCK, PAPER, or SCISSORS?").upper()
+    
+    computer = random.choice(["ROCK", "PAPER", "SCISSORS"])
+    
+    if user == computer:
+        return "You and the computer both chosed {}. It's a tie.".format(computer)
+    
+    if is_win:
+        return "You chose {} and the computer chose {}. You won!".format(user, computer)
+    
+    return "You chose {} and the computer chose {}. You lose!".format(user, computer)
 
-    user_choice = input('Choose ROCK, PAPER, or SCISSORS: ').upper()
+def is_win(player, opponent):
+    # return true if the paper beats the opponnent 
+    # winning conditions rock > scissors, scissors > paper, paper > rock
+    if (player == "ROCK" and opponnent == "SCISSORS") or (player == "SCISSORS" and opponent == "PAPER") or (player == "PAPER" and opponnent == "ROCK"):
+        return True
+    return False 
     
-    print('Rock, paper, scissors shoot!')
-    
-    if user_choice == 'ROCK':
-        if pc_choice == 'ROCK':
-            print("It's a tie! The pc chose", pc_choice, '.')
-            
-        elif pc_choice == 'PAPER':
-            print('You lose! The pc chose', pc_choice, '.')
-            
-        else:
-            print('You win! The pc chose', pc_choice ,'.')
-            
-            
-    if user_choice == 'PAPER':
-        if pc_choice == 'PAPER':
-            print("It's a tie! The pc chose", pc_choice, '.')
-            
-        elif pc_choice == 'SCISSORS':
-            print('You lose! The pc chose', pc_choice, '.')
-            
-        else:
-            print('You win! The pc chose', pc_choice ,'.')           
-            
-                
-    if user_choice == 'SCISSORS':
-        if pc_choice == 'SCISSORS':
-            print("It's a tie! The pc chose", pc_choice, '.')
-            
-        elif pc_choice == 'ROCK':
-            print('You lose! The pc chose', pc_choice, '.')
-            
-        else:
-            print('You win! The pc chose', pc_choice ,'.')           
-            
-rock_paper_scissors()
+if __name__ == '__main__':
+    print(play())    
