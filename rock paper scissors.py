@@ -9,12 +9,12 @@ def play():
     computer = random.choice(["ROCK", "PAPER", "SCISSORS"])
     
     if user == computer:
-        return "You and the computer both chosed {}. It's a tie.".format(computer)
+        return (0, user, computer)
     
     if is_win(user, computer):
-        return "You chose {} and the computer chose {}. You won!".format(user, computer)
+        return (1, user, computer)
     
-    return "You chose {} and the computer chose {}. You lose!".format(user, computer)
+    return (-1, user, computer)
 
 def is_win(player, opponnent):
     # return true if the paper beats the opponnent 
@@ -28,10 +28,24 @@ def play_best_of(n):
     player_wins = 0
     computer_wins = 0
     wins_necessary = math.ceil(n/2)
-    print(wins_necessary)
     while player_wins < wins_necessary and computer_wins < wins_necessary:
+        result, user, computer = play()
+        # tie 
+        if result == 0:
+            print('It is a tie. You both chose {}.\n'.format(user))
+        # win
+        elif result == 1:
+            player_wins += 1
+            print('You chose {} and the computer chose {}. You won!\n'.format(user, computer))
+        else:
+            computer_wins += 1
+            print('You chose {} and the computer chose {}. You lost..\n'.format(user, computer))
+        print('\n')
         
-    
+    if player_wins > computer_wins:
+        print('You won best of {} games! Good job'.format(n))
+    else:
+        print:('The computer has won best out of {} games. Try again later.'.format(n))
+        
 if __name__ == '__main__':
-    print(play())    
-    print(play_best_of(5))
+    play_best_of(3)
